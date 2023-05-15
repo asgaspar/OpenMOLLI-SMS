@@ -22,7 +22,7 @@ Open-MOLLI-SMS accessibility allows faster implementation of new ideas, while it
 If you use the sequence Open-MOLLI-SMS in your work, cite as:
 
 ```
-Andreia S Gaspar, Nuno A Silva, Rita G Nunes. Open-Source Myocardial T1 mapping accelerated with SMS: combining an auto-calibrated blip-bSSFP readout with VERSE-MB pulses” Proc. of Annual Meeting ISMRM 2022, London, 2022.
+ Gaspar, AS, Silva, NA, Price, AN, Ferreira, AM, Nunes, RG. Open-source myocardial T1 mapping with simultaneous multi-slice acceleration: Combining an auto-calibrated blipped-bSSFP readout with VERSE-MB pulses. Magn Reson Med. 2023; 1- 13. doi: 10.1002/mrm.29661
 ```
 
 ## Packages

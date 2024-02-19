@@ -143,7 +143,7 @@ gz_parts=mr.splitGradientAt(gz,rf.delay+rf.t(end));
 gz.delay=mr.calcDuration(gzReph);
 gz_1=mr.addGradients({gzReph,gz},'system',sys);
 
-[rf]=mr.align('right',rf,gz);
+[rf, tmp]=mr.align('right',rf,gz);
 
 gz_2=gzReph; %mr.addGradients({gz_parts(2),gzReph},'system',sys);
 

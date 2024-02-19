@@ -130,6 +130,7 @@ for   Tdelay_trig = 0.35%:0.05:0.55 % [s]
         for zgap = 24 %16:8:60
             
             bs = zgap/RF_parameter.thick;
+            RF_parameter.bs = bs; % Slice gap 
             
             gzSpoil_INV=mr.makeTrapezoid('z','Area',-3.5e3,'Duration',9e-3,'system',sys);
             

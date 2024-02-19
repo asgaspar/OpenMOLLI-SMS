@@ -1,5 +1,5 @@
 function [ seq, varargout ] = bSSFP_VERSE(seq,  MB,sys, fovr,fovp, Nx,Ny, blip, ...
-    li_blip_pattern, ni_acqu_pattern,B1max, z0, varargin)
+    li_blip_pattern, ni_acqu_pattern,B1max, varargin)
 % bSSFP_VERSE_4github(seq,  MB,sys, fovr,fovp, Nx,Ny, blip, ...
 %     li_blip_pattern, ni_acqu_pattern,B1max, z0, varargin)
 %
@@ -29,7 +29,7 @@ end
 
 rfinput=0;
 % Slice gap in units of slice-thickness [dimensionless].
-if nargin ==13
+if nargin ==12
     RF_parameter = varargin{1};
     
     % RF parameters
@@ -51,7 +51,7 @@ elseif nargin==11
     rf_bwt = RF_parameter.rf_bwt;
     bs = RF_parameter.bs;
     
-elseif nargin==14
+elseif nargin==13
     RF_parameter = varargin{1};
     
     % RF parameters
@@ -117,11 +117,11 @@ if  rfinput==0
     %     nlocaltion = z0*1e-3; % add z0 offset
     %     rf.freqOffset = gz.amplitude*nlocaltion;
     rf_dur=(rf_VERSE.t(end)-sys.rfRingdownTime)*1e6; % us Calculate the same duration as VERSE version
-    
-    [rf, ~, ~] = make_MB_Pulse(alpha*pi/180,'Duration',rf_dur*1e-6,...
-        'SliceThickness',thick*1e-3,'apodization',rf_apo,'timeBwProduct',rf_bwt,...
-        'gzrduration', mr.calcDuration(gx_2),...
-        'system',sys, 'MBfactor', MB, 'SliceGap', bs);
+    rf = rf_VERSE;
+%     [rf, ~, ~] = make_MB_Pulse(alpha*pi/180,'Duration',rf_dur*1e-6,...
+%         'SliceThickness',thick*1e-3,'apodization',rf_apo,'timeBwProduct',rf_bwt,...
+%         'gzrduration', mr.calcDuration(gx_2),...
+%         'system',sys, 'MBfactor', MB, 'SliceGap', bs);
     
     rf_fisrt = rf;
     gz_first=gz;
@@ -161,7 +161,7 @@ gz_1=mr.addGradients({gzReph,gz},'system',sys);
 
 
 
-[rf]=mr.align('right',rf,gz);
+[rf, temp]=mr.align('right',rf,gz); % uptade for new pulseq version 19022024
 
 gz_2=gzReph;
 

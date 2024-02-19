@@ -51,6 +51,7 @@ rf.phaseOffset = opt.phaseOffset;
 rf.deadTime = opt.system.rfDeadTime;
 rf.ringdownTime = opt.system.rfRingdownTime;
 rf.delay = opt.delay;
+rf.shape_dur=opt.duration; %Update for new version Pulseq 01102023
 
 
 % Design Phase-optimized MB pulse

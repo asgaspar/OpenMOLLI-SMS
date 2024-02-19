@@ -131,7 +131,7 @@ gx_2=mr.addGradients({gx_parts(2),gxPre},'system',sys);
 % Create 'alpha' degree slice selection pulse and gradient
 
 if  rfinput==0
-    [rf_VERSE, gz, gzReph] = make_MBVERSE_Pulse(alpha*pi/180,'Duration',rf_dur*1e-6,...
+    [rf, gz, gzReph] = make_MBVERSE_Pulse(alpha*pi/180,'Duration',rf_dur*1e-6,...
         'SliceThickness',thick*1e-3,'apodization',rf_apo,'timeBwProduct',rf_bwt,...
         'gzrduration', mr.calcDuration(gx_2),...
         'system',sys, 'MBfactor', MB, 'B1max', B1max, 'SliceGap', bs);
@@ -140,10 +140,6 @@ if  rfinput==0
     %     rf.freqOffset = gz.amplitude*nlocaltion;
     rf_dur=(rf_VERSE.t(end)-sys.rfRingdownTime)*1e6; % us Calculate the same duration as VERSE version
     
-    [rf, ~, ~] = make_MB_Pulse(alpha*pi/180,'Duration',rf_dur*1e-6,...
-        'SliceThickness',thick*1e-3,'apodization',rf_apo,'timeBwProduct',rf_bwt,...
-        'gzrduration', mr.calcDuration(gx_2),...
-        'system',sys, 'MBfactor', MB, 'SliceGap', bs);
     
     rf_fisrt = rf;
     gz_first=gz;
@@ -169,7 +165,7 @@ phaseAreas = ((0:Ny)-Ny/2)*deltakp;
 
 gz.delay=mr.calcDuration(gzReph);
 gz_1=mr.addGradients({gzReph,gz},'system',sys);
-[rf]=mr.align('right',rf,gz);
+[rf, tmp]=mr.align('right',rf,gz);
 gz_2=gzReph;
 
 
